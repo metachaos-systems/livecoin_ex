@@ -3,7 +3,9 @@ defmodule LivecoinExTest do
   doctest LivecoinEx
 
   test "get all order books" do
-    assert {:ok,  [%{"timestamp" => _, "asks" => _, "bids" => _} | _ ]  } = LivecoinEx.all_order_book("btc","usd" )
+    {:ok, result} = LivecoinEx.all_order_book()
+    {currency_pair, order_book_data} = result |> Enum.to_list |> hd() 
+    assert %{"timestamp" => _, "asks" => _, "bids" => _} = order_book_data
   end
 
   test "get order book" do

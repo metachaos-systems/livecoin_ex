@@ -61,6 +61,12 @@ defmodule LivecoinEx do
       |> get_and_extract()
   end
 
+
+  def all_order_book(opts \\ []) do
+    "/exchange/all/order_book"
+      |> get_and_extract()
+  end
+
   defp create_currency_pair(first, second) do
     String.upcase(first)  <> "/" <> String.upcase(second)
   end
