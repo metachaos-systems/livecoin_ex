@@ -1,4 +1,4 @@
-defmodule LivecoinEx do
+defmodule Livecoin do
   @moduledoc """
   Livecoin api methods
   """
