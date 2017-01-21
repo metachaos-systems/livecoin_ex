@@ -33,4 +33,20 @@ defmodule LivecoinEx.Mixfile do
       {:poison, "~> 2.0.0"}
     ]
   end
+
+  defp description do
+    """
+    livecoin.net API client for Elixir/Erlang.
+    Provides access to ticker and trading data for cryptocurrency pairs
+    """
+  end
+
+  defp package do
+    [# These are the default files included in the package
+     files: ["lib", "mix.exs", "README*", "LICENSE*"],
+     maintainers: ["ontofractal"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/cyberpunk-ventures/livecoin_ex"}]
+   end
+
 end
