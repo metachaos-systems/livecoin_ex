@@ -3,7 +3,7 @@ defmodule LivecoinExTest do
   doctest LivecoinEx
 
   test "last trades" do
-    assert {:ok,  [%{ "time": _, "id": _, "price": _, "quantity": _, "type": "BUY" } | _ ]} = LivecoinEx.last_trades()
+    assert {:ok,  [%{ "time" => _, "id" => _, "price" => _, "quantity" => _, "type" => "BUY" } | _ ]} = LivecoinEx.last_trades("btc","usd" )
   end
 
   test "ticker for all pairs" do

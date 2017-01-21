@@ -24,10 +24,19 @@ defmodule LivecoinEx do
   end
 
   def ticker(first, second) do
-    first = String.upcase(first)
-    second = String.upcase(second)
-    "/exchange/ticker?currencyPair=#{first}/#{second}"
+    pair = create_currency_pair(first,second)
+    "/exchange/ticker?currencyPair=#{pair}"
       |> get_and_extract()
+  end
+
+  def last_trades(first, second, opts \\ []) do
+    pair = create_currency_pair(first,second)
+    "/exchange/last_trades?currencyPair=#{pair}"
+      |> get_and_extract()
+  end
+
+  defp create_currency_pair(first, second) do
+    String.upcase(first)  <> "/" <> String.upcase(second)
   end
 
   defp get_and_extract(url) do
