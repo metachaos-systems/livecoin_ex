@@ -1,6 +1,6 @@
 defmodule Livecoin do
   @moduledoc """
-  Livecoin api methods
+  Livecoin public api methods
   """
   use HTTPoison.Base
 

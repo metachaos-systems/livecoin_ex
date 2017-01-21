@@ -1,6 +1,17 @@
 # Livecoin
 
-**TODO: Add description**
+Elixir client for Livecoin API.  
+
+The following functions are available:
+
+* `coin_info()`
+* `ticker()`
+* `ticker("TOKEN1","TOKEN2")`
+* `order_book("TOKEN1", "TOKEN2")`
+* `all_order_book()`
+* `last_trades("TOKEN1", "TOKEN2")`
+
+Example responses are provided for every function in the docs.
 
 ## Installation
 

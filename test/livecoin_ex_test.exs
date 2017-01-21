@@ -9,7 +9,7 @@ defmodule LivecoinTest do
 
   test "get all order books" do
     {:ok, result} = Livecoin.all_order_book()
-    {currency_pair, order_book_data} = result |> Enum.to_list |> hd()
+    {_, order_book_data} = result |> Enum.to_list |> hd()
     assert %{"timestamp" => _, "asks" => _, "bids" => _} = order_book_data
   end
 
