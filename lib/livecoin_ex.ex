@@ -4,10 +4,34 @@ defmodule LivecoinEx do
   """
   use HTTPoison.Base
 
+  @doc """
+  Ticker response shape example
+  %{ cur: "BTC",
+    symbol: "BTC/EUR",
+    last: 830.64858,
+    high: 869.99,
+    low: 787.4596,
+    volume: 166.93894877,
+    vwap: 825.99029209,
+    max_bid: 869.99,
+    min_ask: 51,
+    best_bid: 807.148,
+    best_ask: 850 }
+  """
+  def ticker() do
+    "/exchange/ticker"
+      |> get_and_extract()
+  end
+
   def ticker(first, second) do
     first = String.upcase(first)
     second = String.upcase(second)
     "/exchange/ticker?currencyPair=#{first}/#{second}"
+      |> get_and_extract()
+  end
+
+  defp get_and_extract(url) do
+    url
       |> get()
       |> extract_body()
   end
