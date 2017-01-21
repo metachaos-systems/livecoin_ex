@@ -7,7 +7,10 @@ defmodule LivecoinEx.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+     package: package(),
+     description: description()
+    ]
   end
 
   # Configuration for the OTP application
@@ -31,6 +34,7 @@ defmodule LivecoinEx.Mixfile do
     [
       {:httpoison, ">= 0.0.0"},
       {:poison, "~> 2.0.0"}
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
