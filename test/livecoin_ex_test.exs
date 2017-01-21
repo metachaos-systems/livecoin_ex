@@ -2,8 +2,12 @@ defmodule LivecoinExTest do
   use ExUnit.Case
   doctest LivecoinEx
 
+  test "get all order books" do
+    assert {:ok,  [%{"timestamp" => _, "asks" => _, "bids" => _} | _ ]  } = LivecoinEx.all_order_book("btc","usd" )
+  end
+
   test "get order book" do
-    assert {:ok,  [%{"timestamp" => _, "asks" => _, "bids" => _} | _ ]} = LivecoinEx.order_book("btc","usd" )
+    assert {:ok,  %{"timestamp" => _, "asks" => _, "bids" => _}  } = LivecoinEx.order_book("btc","usd" )
   end
 
   test "get last trades" do
