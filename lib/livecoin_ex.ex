@@ -55,6 +55,32 @@ defmodule LivecoinEx do
       |> get_and_extract()
   end
 
+  @doc """
+  Order book response example
+  {
+    "timestamp": 1409921408869,
+    "asks": [
+        [
+            "400.00000000",
+            "5.00000000"
+        ],
+        [
+            "500.00000000",
+            "7.00000000"
+        ]
+    ],
+    "bids": [
+        [
+            "350.00000000",
+            "0.57142858"
+        ],
+        [
+            "300.00000000",
+            "5.00000000"
+        ]
+    ]
+  }
+  """
   def order_book(first, second, opts \\ []) do
     pair = create_currency_pair(first,second)
     "/exchange/order_book?currencyPair=#{pair}"
@@ -62,6 +88,31 @@ defmodule LivecoinEx do
   end
 
 
+  @doc """
+  Get all order book example response
+  {
+      "LTC/BTC": {
+          "timestamp": 1441877692694,
+          "asks": [
+              [
+                  "0.01240280",
+                  "1018.43939000"
+              ]
+          ],
+          "bids": [
+              [
+                  "0.01210890",
+                  "247.07000000"
+              ],
+              [
+                  "0.01210000",
+                  "944.49586780"
+              ]
+          ]
+      },
+      "BTC/USD": [...],
+      ...
+  """
   def all_order_book(opts \\ []) do
     "/exchange/all/order_book"
       |> get_and_extract()
