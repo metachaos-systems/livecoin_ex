@@ -2,15 +2,19 @@ defmodule LivecoinExTest do
   use ExUnit.Case
   doctest LivecoinEx
 
-  test "last trades" do
-    assert {:ok,  [%{ "time" => _, "id" => _, "price" => _, "quantity" => _, "type" => "BUY" } | _ ]} = LivecoinEx.last_trades("btc","usd" )
+  test "get order book" do
+    assert {:ok,  [%{"timestamp" => _, "asks" => _, "bids" => _} | _ ]} = LivecoinEx.order_book("btc","usd" )
   end
 
-  test "ticker for all pairs" do
+  test "get last trades" do
+    assert {:ok,  [%{ "time" => _, "id" => _, "price" => _, "quantity" => _, "type" => _ } | _ ]} = LivecoinEx.last_trades("btc","usd" )
+  end
+
+  test "get ticker for all pairs" do
     assert {:ok,  [%{"best_ask" => _, "best_bid" => _, "vwap" => _} | _ ]} = LivecoinEx.ticker()
   end
 
-  test "ticker for BTC/USD pair" do
+  test "get ticker for BTC/USD pair" do
     assert {:ok, %{"best_ask" => _, "best_bid" => _, "vwap" => _}} = LivecoinEx.ticker("btc","usd")
   end
 end
