@@ -2,9 +2,14 @@ defmodule LivecoinExTest do
   use ExUnit.Case
   doctest LivecoinEx
 
+  test "get coin info for BTC" do
+    {:ok, result} = LivecoinEx.coin_info()
+    assert [%{"minDepositAmount" => _, "name" => _} | _] = result 
+  end
+
   test "get all order books" do
     {:ok, result} = LivecoinEx.all_order_book()
-    {currency_pair, order_book_data} = result |> Enum.to_list |> hd() 
+    {currency_pair, order_book_data} = result |> Enum.to_list |> hd()
     assert %{"timestamp" => _, "asks" => _, "bids" => _} = order_book_data
   end
 

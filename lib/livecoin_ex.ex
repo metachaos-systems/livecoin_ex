@@ -5,6 +5,34 @@ defmodule LivecoinEx do
   use HTTPoison.Base
 
   @doc """
+  Coin info example response
+   [
+      {
+          "name": "MaidSafeCoin",
+          "symbol": "MAID",
+          "walletStatus": "down",
+          "withdrawFee": 2,
+          "minDepositAmount": 10,
+          "minWithdrawAmount": 1,
+          "minOrderAmount": 1
+      },
+      {
+          "name": "Bitcoin",
+          "symbol": "BTC",
+          "walletStatus": "down",
+          "withdrawFee": 0.0004,
+          "minDepositAmount": 0,
+          "minWithdrawAmount": 0.002,
+          "minOrderAmount": 0.01
+      }
+  ]
+  """
+  def coin_info() do
+    "/info/coinInfo"
+      |> get_and_extract()
+  end
+
+  @doc """
   Ticker response example
   %{ cur: "BTC",
     symbol: "BTC/EUR",
@@ -135,8 +163,16 @@ defmodule LivecoinEx do
   def extract_body(result) do
     with {:ok, response} <- result,
       body = response.body,
-      do: {:ok, body},
+      do: unwrap_livecoin_success(body),
       else: ({:error, reason} -> {:error, reason})
+  end
+
+  defp unwrap_livecoin_success(body) do
+    case body do
+      %{"success" => true, "info" => payload} -> {:ok, payload}
+      %{"success" => false, "error" => error} -> {:error, error}
+      payload -> {:ok, payload}
+    end
   end
 
   defp process_request_body(body), do: body
