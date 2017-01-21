@@ -5,7 +5,7 @@ defmodule LivecoinEx do
   use HTTPoison.Base
 
   @doc """
-  Ticker response shape example
+  Ticker response example
   %{ cur: "BTC",
     symbol: "BTC/EUR",
     last: 830.64858,
@@ -29,6 +29,26 @@ defmodule LivecoinEx do
       |> get_and_extract()
   end
 
+  @doc """
+  Last trades response example
+  [
+    {
+        "time": 1409935047,
+        "id": 99451,
+        "price": 350,
+        "quantity": 2.85714285,
+        "type": "BUY"
+    },
+    {
+        "time": 1409934792,
+        "id": 99450,
+        "price": 350,
+        "quantity": 0.57142857,
+        "type": "SELL"
+    }
+]
+
+  """
   def last_trades(first, second, opts \\ []) do
     pair = create_currency_pair(first,second)
     "/exchange/last_trades?currencyPair=#{pair}"
